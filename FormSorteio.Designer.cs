@@ -116,6 +116,8 @@
             this.label79 = new System.Windows.Forms.Label();
             this.label80 = new System.Windows.Forms.Label();
             this.label81 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -130,15 +132,18 @@
             // 
             // btnSorteioBingo
             // 
+            this.btnSorteioBingo.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSorteioBingo.Location = new System.Drawing.Point(166, 54);
             this.btnSorteioBingo.Name = "btnSorteioBingo";
             this.btnSorteioBingo.Size = new System.Drawing.Size(102, 34);
             this.btnSorteioBingo.TabIndex = 1;
             this.btnSorteioBingo.Text = "BINGO!!!";
             this.btnSorteioBingo.UseVisualStyleBackColor = true;
+            this.btnSorteioBingo.Click += new System.EventHandler(this.btnSorteioBingo_Click);
             // 
             // btnSorteioFinalizar
             // 
+            this.btnSorteioFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSorteioFinalizar.Location = new System.Drawing.Point(297, 54);
             this.btnSorteioFinalizar.Name = "btnSorteioFinalizar";
             this.btnSorteioFinalizar.Size = new System.Drawing.Size(102, 34);
@@ -148,6 +153,7 @@
             // 
             // btnSorteioSortear
             // 
+            this.btnSorteioSortear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSorteioSortear.Location = new System.Drawing.Point(431, 54);
             this.btnSorteioSortear.Name = "btnSorteioSortear";
             this.btnSorteioSortear.Size = new System.Drawing.Size(102, 34);
@@ -908,8 +914,10 @@
             // 
             // lblSorteioUltimoNumero
             // 
+            this.lblSorteioUltimoNumero.BackColor = System.Drawing.Color.Maroon;
             this.lblSorteioUltimoNumero.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSorteioUltimoNumero.Location = new System.Drawing.Point(224, 150);
+            this.lblSorteioUltimoNumero.ForeColor = System.Drawing.Color.White;
+            this.lblSorteioUltimoNumero.Location = new System.Drawing.Point(182, 150);
             this.lblSorteioUltimoNumero.Name = "lblSorteioUltimoNumero";
             this.lblSorteioUltimoNumero.Size = new System.Drawing.Size(120, 115);
             this.lblSorteioUltimoNumero.TabIndex = 79;
@@ -918,8 +926,10 @@
             // 
             // lblSorteioNumeroSorteado
             // 
+            this.lblSorteioNumeroSorteado.BackColor = System.Drawing.Color.Green;
             this.lblSorteioNumeroSorteado.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSorteioNumeroSorteado.Location = new System.Drawing.Point(350, 150);
+            this.lblSorteioNumeroSorteado.ForeColor = System.Drawing.Color.White;
+            this.lblSorteioNumeroSorteado.Location = new System.Drawing.Point(378, 150);
             this.lblSorteioNumeroSorteado.Name = "lblSorteioNumeroSorteado";
             this.lblSorteioNumeroSorteado.Size = new System.Drawing.Size(120, 115);
             this.lblSorteioNumeroSorteado.TabIndex = 80;
@@ -928,8 +938,10 @@
             // 
             // lblSorteioUltimaLetra
             // 
+            this.lblSorteioUltimaLetra.BackColor = System.Drawing.Color.Maroon;
             this.lblSorteioUltimaLetra.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSorteioUltimaLetra.Location = new System.Drawing.Point(224, 150);
+            this.lblSorteioUltimaLetra.ForeColor = System.Drawing.Color.White;
+            this.lblSorteioUltimaLetra.Location = new System.Drawing.Point(182, 150);
             this.lblSorteioUltimaLetra.Name = "lblSorteioUltimaLetra";
             this.lblSorteioUltimaLetra.Size = new System.Drawing.Size(120, 31);
             this.lblSorteioUltimaLetra.TabIndex = 81;
@@ -938,8 +950,10 @@
             // 
             // lblSorteioSorteadoLetra
             // 
+            this.lblSorteioSorteadoLetra.BackColor = System.Drawing.Color.Green;
             this.lblSorteioSorteadoLetra.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSorteioSorteadoLetra.Location = new System.Drawing.Point(350, 150);
+            this.lblSorteioSorteadoLetra.ForeColor = System.Drawing.Color.White;
+            this.lblSorteioSorteadoLetra.Location = new System.Drawing.Point(378, 150);
             this.lblSorteioSorteadoLetra.Name = "lblSorteioSorteadoLetra";
             this.lblSorteioSorteadoLetra.Size = new System.Drawing.Size(120, 31);
             this.lblSorteioSorteadoLetra.TabIndex = 82;
@@ -996,11 +1010,34 @@
             this.label81.Text = "O";
             this.label81.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(384, 118);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(114, 23);
+            this.label2.TabIndex = 88;
+            this.label2.Text = "Sorteado";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(140, 118);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(205, 23);
+            this.label3.TabIndex = 89;
+            this.label3.Text = "Último Sorteado";
+            // 
             // FormSorteio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(694, 486);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label81);
             this.Controls.Add(this.label80);
             this.Controls.Add(this.label79);
@@ -1186,5 +1223,7 @@
         private System.Windows.Forms.Label label79;
         private System.Windows.Forms.Label label80;
         private System.Windows.Forms.Label label81;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
