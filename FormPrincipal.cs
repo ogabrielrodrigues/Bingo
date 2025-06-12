@@ -89,5 +89,11 @@ namespace BingoApp
                 );
             } 
         }
+
+        private void btnPrincipalHistorico_Click(object sender, EventArgs e)
+        {
+            FormHistorico formHistorico = new FormHistorico();
+            formHistorico.ShowDialog();
+        }
     }
 }

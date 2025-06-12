@@ -2,7 +2,7 @@
 
 - [] Fazer o botão finalizar
 
-- [] Fazer a tela de histórico
+- [X] Fazer a tela de histórico
 
 - [] Revisar toda a lógica
 

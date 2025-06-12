@@ -1126,6 +1126,7 @@
             this.Controls.Add(this.btnSorteioFinalizar);
             this.Controls.Add(this.btnSorteioBingo);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormSorteio";
             this.Text = "FormSorteio";
             this.ResumeLayout(false);

@@ -49,26 +49,28 @@ namespace BingoApp
         {
             List<int> numerosInformados = FormatarNumerosCartela();
 
-            foreach (int informado in numerosInformados)
+            foreach (int sorteado in numerosSorteados)
             {
-                // Se retornar 0, é porque esse número não foi sorteado, ou não está presente
+                // Se retornar 0, é porque não foram i, ou não está presente
                 // na cartela informada. Ou seja, COMEU BRONHA!
-                if (this.numerosSorteados.Find(sorteado => sorteado == informado) == 0) {
-                    MessageBox.Show(
-                        "Atenção - Cartela Inválida",
-                        "Você informou um número não sorteado! COMEU BRONHA!",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-
+                if (numerosInformados.Find(informado => informado == sorteado) == 0) {
                     // Código Retry (4), é que algum número não foi sorteado
                     this.DialogResult = DialogResult.Retry;
                     return;
                 }
             }
 
-            // Código OK (1), é que deu certo e todos os número coincidem
-            this.DialogResult = DialogResult.OK;
+            foreach (int informado in numerosInformados)
+            {
+                // Se retornar 0, é porque esse número não foi sorteado, ou não está presente
+                // na cartela informada. Ou seja, COMEU BRONHA!
+                if (numerosInformados.Find(informado => informado == sorteado) == 0)
+                {
+                    // Código Retry (4), é que algum número não foi sorteado
+                    this.DialogResult = DialogResult.Retry;
+                    return;
+                }
+            }
 
             this.momentoFinal = DateTime.Now;
             TimeSpan duracao = this.momentoFinal - this.momentoInicial;
@@ -97,6 +99,8 @@ namespace BingoApp
                 );
             }
 
+            // Código OK (1), é que deu certo e todos os número coincidem
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
     }

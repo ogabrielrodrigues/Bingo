@@ -151,20 +151,34 @@ namespace BingoApp
 
         void FinalizarBingo()
         {
+            MessageBox.Show(
+               "Obrigado por participar!",
+               "Bingo Finalizado",
+               MessageBoxButtons.OK,
+               MessageBoxIcon.Information
+            );
 
+            this.Close();
         }
 
         private void btnSorteioBingo_Click(object sender, EventArgs e)
         {
-
             FormConferenciaBingo formConferenciaBingo = new FormConferenciaBingo(this.caminhoArquivo, this.momentoInicial, this.numerosSorteados);
             
             DialogResult bingo = formConferenciaBingo.ShowDialog();
 
-            if (bingo == DialogResult.OK)
+            if (bingo == DialogResult.Retry)
             {
-                FinalizarBingo();
+                MessageBox.Show(
+                   "Atenção - Cartela Inválida",
+                   "Você informou um número não sorteado! COMEU BRONHA!",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Warning
+                );
+                return;
             }
+
+            FinalizarBingo();
         }
     }
 }
