@@ -16,8 +16,7 @@ namespace BingoApp
         string caminhoArquivo;
         DateTime momentoInicial;
 
-        List<int> numeros;
-        Random gerador;
+        List<int> numerosASortear;
 
         int indiceAtual;
         string ultimaLetra = "B";
@@ -28,6 +27,7 @@ namespace BingoApp
         public FormSorteio(string caminhoArquivo, DateTime momentoInicial)
         {
             InitializeComponent();
+
             this.caminhoArquivo = caminhoArquivo;
             this.momentoInicial = momentoInicial;
 
@@ -46,11 +46,11 @@ namespace BingoApp
         {
             DateTime momentoInicio = DateTime.Now;
 
-            numeros = Enumerable.Range(1, 75).ToList();
+            numerosASortear = Enumerable.Range(1, 75).ToList();
 
-            gerador = new Random();
+            Random gerador = new Random();
 
-            EmbaralharLista();
+            EmbaralharLista(gerador);
 
             indiceAtual = 0;
 
@@ -61,14 +61,14 @@ namespace BingoApp
             lblSorteioNumeroSorteado.Text = "0";
         }
 
-        void EmbaralharLista()
+        void EmbaralharLista(Random gerador)
         {
-            for (int i = numeros.Count - 1; i > 0; i--)
+            for (int i = numerosASortear.Count - 1; i > 0; i--)
             {
                 int j = gerador.Next(i + 1);
-                int temp = numeros[i];
-                numeros[i] = numeros[j];
-                numeros[j] = temp;
+                int temp = numerosASortear[i];
+                numerosASortear[i] = numerosASortear[j];
+                numerosASortear[j] = temp;
             }
         }
 
@@ -117,9 +117,9 @@ namespace BingoApp
         int SortearNumero()
         {
             // Se retornar -1, é porque não há mais números a serem sorteados. Portanto, o bingo terminou!
-            if (indiceAtual >= numeros.Count) return -1;
+            if (indiceAtual >= numerosASortear.Count) return -1;
 
-            int sorteado = numeros[indiceAtual++];
+            int sorteado = numerosASortear[indiceAtual++];
 
             MarcarNumeroNoBingo(sorteado);
             MarcarPlacar(sorteado);
@@ -127,7 +127,8 @@ namespace BingoApp
             try
             {
                 SalvarNumeroBingo(sorteado);
-            } catch (Exception ex)
+            } 
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     "Ocorreu um erro ao salvar o número do BINGO\nERRO: " + ex,
@@ -143,14 +144,50 @@ namespace BingoApp
 
         private void btnSorteioSortear_Click(object sender, EventArgs e)
         {
+            // Se retornar -1, é porque não há mais numeros a sortear.
             if (SortearNumero() == -1)
             {
-                MessageBox.Show("O bingo terminou!");
+                MessageBox.Show(
+                    "Não há mais números a sortear! Inicie uma conferência ou finalize o bingo",
+                    "Atenção",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
-        void FinalizarBingo()
+        void FinalizarBingo(bool temVencedor)
         {
+            if (!temVencedor)
+            {
+                try
+                {
+                    DateTime momentoFinal = DateTime.Now;
+                    TimeSpan duracao = momentoFinal - this.momentoInicial;
+
+                    string listaDeSorteados = "";
+
+                    foreach (int sorteado in numerosSorteados)
+                    {
+                        listaDeSorteados += $"{sorteado.ToString().PadLeft(2, '0')}\n";
+                    }
+
+                    File.AppendAllText(caminhoArquivo,
+                        $"\n\nVENCEDOR: Sem Vencedor\nDATA TERMINO: {momentoFinal}\nDURAÇÃO: {duracao.ToString(@"hh\:mm\:ss")}"
+                        + $"\n\nLISTA DE NÚMEROS SORTEADOS:\n\n{listaDeSorteados}"
+                    );
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "ERRO",
+                        "Houve um erro ao finalizar o bingo! Tente novamente",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+
             MessageBox.Show(
                "Obrigado por participar!",
                "Bingo Finalizado",
@@ -178,7 +215,12 @@ namespace BingoApp
                 return;
             }
 
-            FinalizarBingo();
+            FinalizarBingo(true);
+        }
+
+        private void btnSorteioFinalizar_Click(object sender, EventArgs e)
+        {
+            FinalizarBingo(false);
         }
     }
 }

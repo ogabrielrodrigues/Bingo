@@ -150,6 +150,7 @@
             this.btnSorteioFinalizar.TabIndex = 2;
             this.btnSorteioFinalizar.Text = "Finalizar";
             this.btnSorteioFinalizar.UseVisualStyleBackColor = true;
+            this.btnSorteioFinalizar.Click += new System.EventHandler(this.btnSorteioFinalizar_Click);
             // 
             // btnSorteioSortear
             // 

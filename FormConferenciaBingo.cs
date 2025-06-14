@@ -30,41 +30,31 @@ namespace BingoApp
 
         List<int> FormatarNumerosCartela()
         {
-            List<int> numeros = new List<int>();
+            List<int> numerosCartela = new List<int>();
 
+            // Separa a string por espaços usando o método Split
             string[] numerosTexto = txtConferenciaNumerosCartela.Text.Split(' ');
 
             foreach (string numero in numerosTexto)
             {
                 if (!string.IsNullOrWhiteSpace(numero))
                 {
-                    numeros.Add(int.Parse(numero));
+                    numerosCartela.Add(int.Parse(numero));
                 }
             }
 
-            return numeros;
+            return numerosCartela;
         }
 
         private void btnConferenciaConferir_Click(object sender, EventArgs e)
         {
             List<int> numerosInformados = FormatarNumerosCartela();
 
-            foreach (int sorteado in numerosSorteados)
-            {
-                // Se retornar 0, é porque não foram i, ou não está presente
-                // na cartela informada. Ou seja, COMEU BRONHA!
-                if (numerosInformados.Find(informado => informado == sorteado) == 0) {
-                    // Código Retry (4), é que algum número não foi sorteado
-                    this.DialogResult = DialogResult.Retry;
-                    return;
-                }
-            }
-
             foreach (int informado in numerosInformados)
             {
                 // Se retornar 0, é porque esse número não foi sorteado, ou não está presente
                 // na cartela informada. Ou seja, COMEU BRONHA!
-                if (numerosInformados.Find(informado => informado == sorteado) == 0)
+                if (this.numerosSorteados.Find(sorteado => sorteado == informado) == 0)
                 {
                     // Código Retry (4), é que algum número não foi sorteado
                     this.DialogResult = DialogResult.Retry;
